@@ -1,0 +1,29 @@
+#infoWindow .p-card .p-card-body,
+#infoWindow .p-card .p-card-content {
+    padding: 0px;
+}
+
+#infoWindow .p-card .p-card-title {
+    font-weight: 700;
+    margin-bottom: 0px;
+    font-size: 1rem;
+}
+
+#infoWindow .p-card {
+    box-shadow: none;
+}
+
+#infoWindow .p-button.p-button-sm {
+    font-size: 0.5rem;
+}
+
+#infoWindow .p-card .p-card-footer {
+    padding: 0.5rem 0 0 0;
+}
+
+#infoWindow .p-button.p-button-secondary,
+.p-buttonset.p-button-secondary > .p-button,
+.p-splitbutton.p-button-secondary > .p-button,
+.p-fileupload-choose.p-button-secondary {
+    background-color: black;
+}

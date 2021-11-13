@@ -1,0 +1,121 @@
+#sideMenu {
+    z-index: 1;
+    position: absolute;
+    width: 20%;
+}
+
+#section1,
+#section2,
+#section3,
+#section4 {
+    margin: 5px;
+}
+
+#sideMenu .p-card .p-card-body {
+    padding: 0px;
+}
+
+#sideMenu h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    margin: 0px;
+}
+
+#sideMenu #menuBar {
+    padding: 4px 15px;
+}
+
+#section1.p-card .p-card-content {
+    padding: 0.5rem 0;
+}
+
+#section1 .p-inputtext {
+    border: 1px solid #121212;
+    border-radius: 0;
+}
+
+#section1 ::placeholder {
+    color: black;
+}
+
+#sideMenu .p-button.p-button-secondary,
+.p-buttonset.p-button-secondary > .p-button,
+.p-splitbutton.p-button-secondary > .p-button,
+.p-fileupload-choose.p-button-secondary {
+    background-color: black;
+}
+
+#section2 .p-field-radiobutton {
+    margin-bottom: 4px !important;
+    font-size: 10px;
+}
+
+#section2 label {
+    color: black;
+    font-weight: 500;
+}
+
+#section2 .p-radiobutton .p-radiobutton-box.p-highlight,
+#section2 .p-radiobutton .p-radiobutton-box.p-highlight:not(.p-disabled):hover,
+#section2 .p-radiobutton .p-radiobutton-box.p-highlight {
+    background: black !important;
+    background-color: black !important;
+}
+
+#section2 .p-radiobutton .p-radiobutton-box.p-highlight {
+    background-color: rgb(56, 52, 52);
+}
+
+#section2 .p-radiobutton .p-radiobutton-box:not(.p-disabled):not(.p-highlight):hover {
+    background-color: rgb(56, 52, 52);
+}
+
+#section3 .p-dropdown {
+    border: 1px solid #121212;
+    border-radius: 0;
+}
+
+#section3 .p-dropdown .p-dropdown-label.p-placeholder {
+    color: #000000;
+}
+
+#section4 .p-card .p-card-body,
+#section4 .p-card .p-card-content {
+    padding: 0px;
+}
+
+#section4 .p-card .p-card-title {
+    font-weight: 700;
+    margin-bottom: 0px;
+    color: #000000;
+    font-size: 0.8rem;
+}
+
+#section4 p {
+    font-size: 12px;
+    font-weight: 400;
+}
+
+#section4 .p-card {
+    box-shadow: none;
+}
+
+#section4 .p-button.p-button-sm {
+    font-size: 0.5rem;
+}
+
+#section2 {
+    height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#section4 {
+    height: 150px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
