@@ -6,10 +6,13 @@ import "primereact/resources/themes/saga-blue/theme.css";
 import "primereact/resources/primereact.min.css";
 import "primeicons/primeicons.css"
 import 'primeflex/primeflex.css';
+import MapContext from './context/mapContext';
 
 ReactDOM.render(
   <>
-    <App />
+    <MapContext>
+      <App />
+    </MapContext>
   </>,
   document.getElementById('root')
 );

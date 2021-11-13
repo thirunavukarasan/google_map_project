@@ -15,7 +15,7 @@ export class Section3 extends Component {
     }
 
     onTimeChange(e) {
-        console.log(e)
+
         this.setState({ selected: e.target.value.name })
     }
 

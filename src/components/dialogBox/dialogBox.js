@@ -2,22 +2,28 @@ import React, { Component } from 'react';
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import './dialogBox.css';
+import { mapContext } from '../../context/mapContext';
 
 export class DialogBox extends Component {
+    static contextType = mapContext;
+    constructor(props) {
+        super(props)
+        this.like = this.like.bind(this);
+        this.dislike = this.dislike.bind(this);
+    }
 
     like() {
-        console.log('asasas')
-        alert("like")
+        // this.context.setInfoWindowStatus(false);
     }
 
     dislike() {
-        alert("dislike")
+        // this.context.setInfoWindowStatus(false);
     }
 
     footer = () => (
         <span className="">
             <p className="p-ml-1">Like or DisLike</p>
-            <Button icon="pi pi-thumbs-up" className="p-button-success p-button-sm p-mr-2 p-ml-1" onClick={() => alert('asasas')} />
+            <Button icon="pi pi-thumbs-up" className="p-button-success p-button-sm p-mr-2 p-ml-1" onClick={this.like} />
             <Button icon="pi pi-thumbs-down" className="p-button-danger p-button-sm" onClick={this.dislike} />
         </span>
     );

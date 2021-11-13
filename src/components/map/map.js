@@ -1,14 +1,17 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { markerLocation } from '../../asset/js/markerLocation';
 import { DialogBox } from "../dialogBox/dialogBox";
-
+import InfoWindowBind from '../infoWindowEx/inforWindoBind';
+import { mapContext } from '../../context/mapContext';
 const mapStyles = {
     width: '100%',
     height: '100%'
 };
 
 export class MapContainer extends Component {
+    static contextType = mapContext;
+
     constructor(props) {
         super(props)
         this.state = {
@@ -18,32 +21,41 @@ export class MapContainer extends Component {
         };
     }
 
-    onMarkerClick = (props, marker) => {
+    componentDidMount() {
+        this.setState({ showingInfoWindow: this.context.infoWindowStatus });
+    }
+
+    onMarkerClick = async (props, marker) => {
         this.setState({
             activeMarker: marker,
             selectedPlace: props,
             showingInfoWindow: true
         });
+
+        this.context.setInfoWindowStatus(true);
+
     }
 
 
-    onInfoWindowClose = () =>
+    onInfoWindowClose = async () => {
         this.setState({
             activeMarker: null,
             showingInfoWindow: false
         });
+        this.context.setInfoWindowStatus(false);
 
-    onMapClicked = () => {
-        if (this.state.showingInfoWindow)
+    }
+
+
+    onMapClicked = async () => {
+        if (this.state.showingInfoWindow) {
             this.setState({
                 activeMarker: null,
                 showingInfoWindow: false
             });
+            this.context.setInfoWindowStatus(false);
+        }
     };
-
-
-
-
     render() {
         return (
             <React.Fragment>
@@ -71,14 +83,13 @@ export class MapContainer extends Component {
                             )
                         })
                     }
-
-                    <InfoWindow
+                    <InfoWindowBind
                         marker={this.state.activeMarker}
                         onClose={this.onInfoWindowClose}
-                        visible={this.state.showingInfoWindow}
+                        visible={this.context.infoWindowStatus}
                     >
                         <DialogBox />
-                    </InfoWindow>
+                    </InfoWindowBind>
                 </Map>
             </React.Fragment>
 
