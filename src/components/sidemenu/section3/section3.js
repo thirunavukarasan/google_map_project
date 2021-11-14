@@ -22,7 +22,7 @@ export class Section3 extends Component {
     render() {
         return (
             <React.Fragment>
-                <div style={{ marginLeft: '4px' }}>
+                <div style={{ marginLeft: '8px' }}>
                     <p className="p-text-bold p-mb-2" style={{ color: 'black' }}>Time Window</p>
                     <div className="p-grid">
                         <div className="p-col-12">

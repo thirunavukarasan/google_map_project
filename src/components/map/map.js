@@ -17,23 +17,25 @@ export class MapContainer extends Component {
         this.state = {
             activeMarker: {},
             selectedPlace: {},
-            showingInfoWindow: false
+            showingInfoWindow: false,
+            filerLimit: markerLocation.length,
+            color: ''
         };
     }
 
     componentDidMount() {
-        this.setState({ showingInfoWindow: this.context.infoWindowStatus });
+        this.setState({ showingInfoWindow: this.context.infoWindowStatus, filerLimit: this.context.markerLimit });
     }
 
     onMarkerClick = async (props, marker) => {
         this.setState({
             activeMarker: marker,
             selectedPlace: props,
-            showingInfoWindow: true
+            showingInfoWindow: true,
+            color: marker.color
         });
 
         this.context.setInfoWindowStatus(true);
-
     }
 
 
@@ -43,7 +45,14 @@ export class MapContainer extends Component {
             showingInfoWindow: false
         });
         this.context.setInfoWindowStatus(false);
+    }
 
+    onInfoWindowToastClose = async () => {
+        // this.setState({
+        //     activeMarker: null,
+        //     showingInfoWindow: false
+        // });
+        this.context.setInfowWindowToast(false);
     }
 
 
@@ -54,6 +63,7 @@ export class MapContainer extends Component {
                 showingInfoWindow: false
             });
             this.context.setInfoWindowStatus(false);
+            this.context.setInfowWindowToast(false);
         }
     };
     render() {
@@ -72,12 +82,15 @@ export class MapContainer extends Component {
                     onClick={this.onMapClicked}
                 >
                     {
-                        markerLocation.map(location => {
+                        markerLocation.slice(0, this.context.markerLimit).map(location => {
                             return (
                                 <Marker position={{ lat: location.lat, lng: location.lan }} key={location.name}
                                     onClick={this.onMarkerClick}
                                     name={location.name}
-                                    option={{ icon: "http://maps.google.com/mapfiles/ms/icons/blue-dot.png" }}
+                                    color={location.color}
+                                    icon={{
+                                        url: `http://maps.google.com/mapfiles/ms/icons/${location.color}.png`,
+                                    }}
                                 >
                                 </Marker>
                             )
@@ -86,9 +99,17 @@ export class MapContainer extends Component {
                     <InfoWindowBind
                         marker={this.state.activeMarker}
                         onClose={this.onInfoWindowClose}
-                        visible={this.context.infoWindowStatus}
+                        visible={this.context.infoWindowStatus && this.state.color === 'orange'}
                     >
-                        <DialogBox />
+                        <DialogBox context={this.context}
+                        />
+                    </InfoWindowBind>
+                    <InfoWindowBind
+                        marker={this.state.activeMarker}
+                        onClose={this.onInfoWindowToastClose}
+                        visible={this.context.infowWindowToast}
+                    >
+                        <p>A toast will display after you click like/dislike</p>
                     </InfoWindowBind>
                 </Map>
             </React.Fragment>

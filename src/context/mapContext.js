@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { markerLocation } from "../asset/js/markerLocation";
 export const mapContext = React.createContext();
 
 class mapContextProvider extends Component {
@@ -6,13 +7,32 @@ class mapContextProvider extends Component {
     super(props);
     this.state = {
       children: props.children,
+      markerLimit: markerLocation.length,
       infoWindowStatus: false,
-      setInfoWindowStatus: this.setInfoWindowStatus
+      infowWindowToast: false,
+      orangeNumber: 5,
+      setInfoWindowStatus: this.setInfoWindowStatus,
+      setInfowWindowToast: this.setInfowWindowToast,
+      setMarkerLimit: this.setMarkerLimit,
+      setOrangeNumber: this.setOrangeNumber
     };
   }
 
   setInfoWindowStatus = (infoWindowStatus) => {
+    localStorage.setItem('WIN_STA',infoWindowStatus);
     this.setState({ infoWindowStatus: infoWindowStatus });
+  }
+
+  setMarkerLimit = (limit) => {
+    this.setState({ markerLimit: limit })
+  }
+
+  setOrangeNumber = (num) => {
+    this.setState({ orangeNumber: num })
+  }
+
+  setInfowWindowToast = (infowWindowToast) => {
+    this.setState({infowWindowToast})
   }
 
   render() {

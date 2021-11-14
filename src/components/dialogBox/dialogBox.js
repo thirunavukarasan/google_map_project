@@ -13,11 +13,13 @@ export class DialogBox extends Component {
     }
 
     like() {
-        // this.context.setInfoWindowStatus(false);
+        this.props.context.setInfoWindowStatus(false);
+        this.props.context.setInfowWindowToast(true);
     }
 
     dislike() {
-        // this.context.setInfoWindowStatus(false);
+        this.props.context.setInfoWindowStatus(false);
+        this.props.context.setInfowWindowToast(true);
     }
 
     footer = () => (
